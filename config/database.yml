@@ -19,7 +19,7 @@ development:
   encoding: unicode
   database: el_torneo_development
   pool: 5
-  username: el_torneo
+  username: 
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -48,7 +48,7 @@ test:
   encoding: unicode
   database: el_torneo_test
   pool: 5
-  username: el_torneo
+  username: 
   password:
 
 production:
@@ -56,5 +56,5 @@ production:
   encoding: unicode
   database: el_torneo_production
   pool: 5
-  username: el_torneo
+  username: 
   password:
