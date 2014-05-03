@@ -2,3 +2,13 @@ h1
 {
   font-size: 2rem;
 }
+
+.field, .actions
+{
+  line-height: 3rem;
+}
+
+.field input, .actions input
+{
+  font-size: 2rem;
+}

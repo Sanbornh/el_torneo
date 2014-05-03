@@ -2,7 +2,7 @@ ElTorneo::Application.routes.draw do
 
   root 'teams#index'
 
-  resources :team, only: [:index, :show, :new, :create]
+  resources :teams, only: [:index, :show, :new, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

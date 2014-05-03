@@ -1,1 +1,24 @@
-<h1>Team Sign Up</h1>
+<div class = "team-signup-page">
+  <h1>Team Sign Up Page</h1>
+  <br>
+
+  <%= form_for @team do |f| %>
+    
+    <div class = "field">
+      <%= f.text_field :team_name, autofocus: true, placeholder: "Team Name" %>
+    </div>
+
+    <div class = "field">
+      <%= f.text_field :player1_name, autofocus: true, placeholder: "Player 1 Name" %>
+    </div>
+
+    <div class = "field">
+      <%= f.text_field :player2_name, autofocus: true, placeholder: "Player 2 Name" %>
+    </div>
+
+    <div class = "actions">
+      <%= f.submit %>
+    </div>
+
+  <% end %>
+</div>
