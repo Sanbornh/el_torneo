@@ -1,6 +1,6 @@
 ElTorneo::Application.routes.draw do
 
-  root 'team#index'
+  root 'teams#index'
 
   resources :team, only: [:index, :show, :new, :create]
 
