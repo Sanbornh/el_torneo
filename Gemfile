@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# For debugging
+gem 'pry'
+
 # Use ancestry to model the tournament tree
 gem 'ancestry'
 
