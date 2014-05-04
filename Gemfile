@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# For displaying db tables nicely
+gem 'hirb'
+
 # For debugging
 gem 'pry'
 
