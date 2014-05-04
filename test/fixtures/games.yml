@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  winner: 1
+  team_one_id: 1
+  team_two_id: 1
+  type: 
+
+two:
+  winner: 1
+  team_one_id: 1
+  team_two_id: 1
+  type: 
