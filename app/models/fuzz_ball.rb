@@ -1,0 +1,3 @@
+class FuzzBall < Game
+  
+end

@@ -1,0 +1,3 @@
+class PingPong < Game
+  
+end
