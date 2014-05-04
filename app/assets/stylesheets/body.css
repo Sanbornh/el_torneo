@@ -1,11 +1,19 @@
 h1
 {
   font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.team-signup-page
+{
+  text-align: center;
+  margin-top: 10%;
 }
 
 .field, .actions
 {
   line-height: 3rem;
+  margin-bottom: 1rem;
 }
 
 .field input, .actions input
