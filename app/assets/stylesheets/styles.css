@@ -67,6 +67,11 @@ h2 {
   float: right;
 }
 
+.profile {
+  font-size: 3em; 
+  margin-top: -0.5em;
+}
+
 .score_board {
   width: 50%;
   min-width: 600px;
@@ -117,4 +122,11 @@ h2 {
   display: inline-block;
   float: right;
   border-right: 1px solid #BCC0CD;
+}
+
+.profile_photo {
+  width: 50%;
+  height: 200px;
+  display: block;
+/*  float: left;*/
 }
