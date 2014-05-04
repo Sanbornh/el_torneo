@@ -4,6 +4,9 @@ ElTorneo::Application.routes.draw do
 
   resources :teams, only: [:index, :show, :new, :create]
 
+  resources :ping_pong, controller: 'teams', type: 'PingPong'
+  resources :fuzz_ball, controller: 'teams', type: 'FuzzBall'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
