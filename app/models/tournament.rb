@@ -22,6 +22,20 @@ class Tournament
 			@first_round_games << game
 		end
 
+		@next_round_games = []
+		(@first_round_games.length / 2).times do 
+			child_games = @first_round_games.shift(2)
+			parent_game = Game.create
+			child_games.each do |game|
+				game.parent = parent_game
+				game.save
+			end
+
+			@next_round_games << parent_game
+		end
+
+		binding.pry
+
 		# for first two games in array, create a game
 		# set the parent id of those two games to new game id
 		# put new game into array?
