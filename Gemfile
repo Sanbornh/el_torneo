@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Use ancestry to model the tournament tree
+gem 'ancestry'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
 
@@ -21,6 +24,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+# Used to handle team member pictures
 gem 'paperclip', github: 'thoughtbot/paperclip'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
