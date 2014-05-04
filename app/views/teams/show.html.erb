@@ -1,0 +1,16 @@
+<%= link_to "Main Page", teams_path %>
+
+<div class = "show-team-page">
+  <h1><%= @team[:team_name] %></h1>
+
+  <div class = "player-show">
+    <%= @team[:player1_name] %>
+    <%= image_tag @team.avatar1.url(:medium) %>
+  </div>
+
+  <div class = "player-show">
+    <%= @team[:player2_name] %>
+    <%= image_tag @team.avatar2.url(:medium) %>
+  </div>
+
+</div>
