@@ -3,7 +3,9 @@ class Game < ActiveRecord::Base
   has_many :teams_games
   has_many :teams, through: :teams_games
 
-  scope :pingpong, -> { where (type: 'PingPong')}
-  scope :fuzzball, -> { where (type: 'FuzzBall')}
+  scope :ping_pong, -> { where(type: 'PingPong')}
+  scope :fuzz_ball, -> { where(type: 'FuzzBall')}
+
+  delegate :pingpong, :fuzzball, to: :games
 
 end
