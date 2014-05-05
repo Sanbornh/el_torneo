@@ -1,0 +1,20 @@
+<div class= "ref-login-page">
+  <h1>Referee Log In Page</h1>
+
+  <%= form_tag ref_sessions_path do %>
+
+    <div class = "field">
+      <%= text_field_tag :username, params[:username], placeholder: "Username" %>
+    </div>
+
+    <div class = "field">
+      <%= password_field_tag :password, placeholder: "Password" %>
+    </div>
+
+    <div class = "actions">
+      <%= submit_tag "Sign In" %>
+    </div>
+
+  <% end %>
+
+</div>

@@ -1,13 +1,38 @@
   <div class="navbar">
     <ul class="nav_btns">
     	
-      	<li class="nav_btn"><h2>TEAMS</h2></li>
-    
-      <li class="nav_btn"><h2>PING-PONG</h2></li>
-      <li class="nav_btn"><h2>FUZZBALL</h2></li>
-      <%= link_to(root_path) do %>
-        <li class="nav_btn"><h2>SCOREBOARD</h2></li>
+      <% if current_user %>
+        <%= link_to((ref_session_path("current")), method: :delete) do %>
+          <li class="nav_btn" style = "width: 250px"><h2><%= "LOGOUT " + current_user.username.upcase %></h2></li>
+        <% end %>
+      <% else %>
+        <%= link_to(new_ref_session_path) do %>
+          <li class="nav_btn"><h2>REFEREE LOG IN</h2></li>
+        <% end %>
       <% end %>
-      <li class="nav_btn"><h2>REGISTER</h2></li>
+
+      <%= link_to(new_team_path) do %>
+        <li class="nav_btn"><h2>TEAM SIGN UP</h2></li>
+      <% end %>
+
+      <%= link_to(root_path) do %>
+        <li class="nav_btn"><h2>TEAMS</h2></li>
+      <% end %>
+
+      <%= link_to(root_path) do %>
+        <li class="nav_btn"><h2>PING-PONG</h2></li>
+      <% end %>
+
+      <%= link_to(root_path) do %>
+        <li class="nav_btn"><h2>FUZZBALL</h2></li>
+      <% end %>
+
+      <%= link_to(root_path) do %>
+        <li class="nav_btn"><h2>COSTUMES</h2></li>
+      <% end %>
+
     </ul>
   </div>
+
+
+  

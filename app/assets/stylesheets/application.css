@@ -14,14 +14,8 @@
  *= require styles
  */
 
-/*@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
-
 html
 {
-  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  color: #6C707D;
 }
-
-body
-{
-  line-height: 2rem;
-}*/
