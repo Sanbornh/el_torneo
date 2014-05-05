@@ -1,8 +1,14 @@
   <div class="navbar">
     <ul class="nav_btns">
-
-    	<%= link_to(new_ref_session_path) do %>
-        <li class="nav_btn"><h2>REFEREE LOG IN</h2></li>
+    	
+      <% if current_user %>
+        <%= link_to((ref_session_path("current")), method: :delete) do %>
+          <li class="nav_btn" style = "width: 250px"><h2><%= "LOGOUT " + current_user.username.upcase %></h2></li>
+        <% end %>
+      <% else %>
+        <%= link_to(new_ref_session_path) do %>
+          <li class="nav_btn"><h2>REFEREE LOG IN</h2></li>
+        <% end %>
       <% end %>
 
       <%= link_to(new_team_path) do %>
@@ -27,3 +33,6 @@
 
     </ul>
   </div>
+
+
+  
