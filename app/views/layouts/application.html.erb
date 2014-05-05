@@ -9,8 +9,17 @@
 </head>
 <body>
 	<%= render "navbar" %>
+
+  <div class = "flash">
+    <% if flash[:notice] %>
+      <p id = "notice", style="color:green"><%= flash[:notice] %></p>
+    <% end %>
+    <% if flash[:alert] %>
+      <p id = "alert", style="color:red"><%= flash[:alert] %></p>
+    <% end %>
+  </div>
 	
-<%= yield %>
+  <%= yield %>
 
 </body>
 </html>
