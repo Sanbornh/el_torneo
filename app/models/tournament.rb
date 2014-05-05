@@ -11,10 +11,6 @@ class Tournament
 	def generate_tournament_structure
 		seed_first_round
 		generate_other_rounds
-		# for first two games in array, create a game
-		# set the parent id of those two games to new game id
-		# put new game into array?
-		# repeat until array is empty
 	end
 
 	def random_team!
@@ -35,12 +31,10 @@ class Tournament
 	end
 
 	def seed_first_round
-		@first_round_games = [] 
-		4.times do 
+		(@team_count / 2).times do 
 			team1, team2 = random_team!, random_team!
 			game = Game.create! 
 			populate_game(team1, team2, game)
-			# @first_round_games << game
 		end
 	end
 
@@ -51,7 +45,7 @@ class Tournament
 			@previous_round = Game.roots.to_a		# make an array with all of the games from the previous round 
 
 			(@previous_round.length / 2).times do 
-				
+
 				child_games = @previous_round.shift(2)
 				parent_game = Game.create
 
@@ -59,9 +53,7 @@ class Tournament
 					game.parent = parent_game
 					game.save
 				end
-
 			end
-
 		end
 	end
 end
