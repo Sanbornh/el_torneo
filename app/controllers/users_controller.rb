@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     #clicking on a game takes you to the 'show' page for that game
     #the referee should be able to see the games by 'type'
     #need two referees, each responsible for one 'type' of games - fuzzball or pingpong
+    @games = Game.all
   end
 
   def show
