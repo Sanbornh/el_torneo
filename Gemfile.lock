@@ -38,6 +38,7 @@ GEM
     ancestry (2.1.0)
       activerecord (>= 3.0.0)
     arel (4.0.2)
+    bcrypt (3.1.7)
     builder (3.1.4)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -130,6 +131,7 @@ PLATFORMS
 
 DEPENDENCIES
   ancestry
+  bcrypt (~> 3.1.7)
   coffee-rails (~> 4.0.0)
   hirb
   jbuilder (~> 1.2)
