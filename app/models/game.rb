@@ -28,7 +28,13 @@ class Game < ActiveRecord::Base
     first_team_name = Team.find(first_team_id).team_name
     second_team_name = Team.find(second_team_id).team_name
 
-    "#{first_team_name} vs. #{second_team_name}"
+    first_team_player1 = Team.find(first_team_id).player1_name
+    first_team_player2 = Team.find(first_team_id).player2_name
+
+    second_team_player1 = Team.find(second_team_id).player1_name
+    second_team_player2 = Team.find(second_team_id).player2_name
+
+    "#{first_team_name} (#{first_team_player1} and #{first_team_player2}) vs. #{second_team_name} (#{second_team_player1} and #{second_team_player2})"
   end
 
 end
