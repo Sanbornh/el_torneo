@@ -2,7 +2,7 @@ class Game < ActiveRecord::Base
 
   has_many :teams_games
   has_many :teams, through: :teams_games
-  has_ancestry
+  has_ancestry :cache_depth => true
 
   scope :ping_pong, -> { where(type: 'PingPong')}
   scope :fuzz_ball, -> { where(type: 'FuzzBall')}

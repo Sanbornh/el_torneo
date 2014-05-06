@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140504231613) do
+ActiveRecord::Schema.define(version: 20140506175751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20140504231613) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "ancestry"
+    t.integer  "ancestry_depth", default: 0
   end
 
   add_index "games", ["ancestry"], name: "index_games_on_ancestry", using: :btree
