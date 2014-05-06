@@ -1,16 +1,18 @@
 class Tournament
 
 	def initialize(type, teams)
-		# @name = name
 		@type = type
 		@teams = teams.to_a 
 		@team_count = teams.length
 		@rounds = determine_num_of_rounds
-		generate_num_first_round_games
+		set_num_first_round_games
+
 		generate_tournament_structure
 	end
 
-	def generate_num_first_round_games
+	# Should these all be private methods?
+
+	def set_num_first_round_games
 		if @team_count <= 8
 			@num_first_round_games = 4
 		elsif @team_count <= 16
@@ -26,6 +28,8 @@ class Tournament
 		make_other_rounds
 	end
 
+	# Note that this method gets a random team
+	# but it also removes that team from the array!
 	def random_team!
 		@teams.shuffle!.pop
 	end
@@ -38,34 +42,37 @@ class Tournament
 		end
 	end
 
-	def populate_game(team1, team2, game)
-		TeamsGame.create!(game_id: game.id, team_id: team1.id) 
-		TeamsGame.create!(game_id: game.id, team_id: team2.id)	
-	end
-
 	def make_first_round
 		@num_first_round_games.times { Game.create!(type: @type) }
 	end
 
+	# This method proceeds by first placing one team in every
+	# first round game. Then it iterates through a second time
+	# and places all the remaining teams (the ones that haven't
+	# been assigned to a game) into games.
+	# This means that depending on the pool size, some teams might not
+	# have an opponent for the first round, effectively giving them a buy
+	# to the second round. This is the desired behaviour to avoid complications
+	# in later rounds. 
+	# Note that it also seeds the round randomly. Currently there is no seeding 
+	# based on rank.
 	def seed_first_round
-		games_in_round = Game.roots.to_a
-		until @teams.empty? do
+		games_in_round = Game.roots.where(type: @type).to_a
+
+		2.times do
 			games_in_round.each do |game|
-				game.set_team(random_team!)
+				game.set_team(random_team!) unless @teams.empty?
 			end
 		end
-
-
-		# (@team_count / 2).times do 
-		# 	team1, team2 = random_team!, random_team!
-		# 	game = Game.create!(type: @type) 
-		# 	populate_game(team1, team2, game)
-		# end
 	end
 
+
+	# Creates a tournament structure above the first round
+	# The only thing being set up here is empty games and the
+	# proper relations between them.
 	def make_other_rounds
-		(@rounds - 1).times do 										# do this x times where x is number of rounds after first round
-			@previous_round = Game.roots.to_a				# make an array with all of the games from the previous round 
+		(@rounds - 1).times do 																				
+			@previous_round = Game.roots.where(type: @type).to_a			
 			(@previous_round.length / 2).times do 
 				child_games = @previous_round.shift(2)
 				parent_game = Game.create!(type: @type)
