@@ -1,10 +1,8 @@
 class UsersController < ApplicationController
 
   def index
-    #this is to show every game that has been created
-    #clicking on a game takes you to the 'show' page for that game
-    #the referee should be able to see the games by 'type'
-    #need two referees, each responsible for one 'type' of games - fuzzball or pingpong
+    #this is to show every unplayed game
+    #two referees see two separate types of games
     @games = Game.all
   end
 
