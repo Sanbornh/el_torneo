@@ -37,4 +37,12 @@ class Game < ActiveRecord::Base
     "#{first_team_name} (#{first_team_player1} and #{first_team_player2}) vs. #{second_team_name} (#{second_team_player1} and #{second_team_player2})"
   end
 
+  def team_score
+    @teams_game = TeamsGame.where(game_id: self)
+    first_team_score = @teams_game[0].score
+    second_team_score = @teams_game[1].score
+
+    "#{first_team_score} - #{second_team_score}"
+  end
+
 end

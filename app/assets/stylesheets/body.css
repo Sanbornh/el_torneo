@@ -20,3 +20,9 @@ h1
 {
   font-size: 2rem;
 }
+
+.ref-scorekeeping-page-scoreboard, .team-scorekeeping
+{
+  text-align: center;
+}
+

@@ -19,6 +19,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_first_team_score
+    @game = Game.find(params[:id])
+    @team_games = TeamsGame.where(game_id: @game.id)
+    new_score = @team_games[0].update_attribute(:score, @team_games[0].score + 1)
+    redirect_to user_path
+  end
+
+  def update_second_team_score
+    @game = Game.find(params[:id])
+    @team_games = TeamsGame.where(game_id: @game.id)
+    @team_games[1].update_attribute(:score, @team_games[1].score + 1)
+    redirect_to user_path
+  end
+
   private
 
   def user_params
