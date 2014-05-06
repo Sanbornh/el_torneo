@@ -3,12 +3,10 @@ ElTorneo::Application.routes.draw do
   root 'application#index'
 
   resources :teams, only: [:index, :show, :new, :create]
-
   resources :ping_pong, controller: 'games', type: 'PingPong', only: [:index]
   resources :fuzz_ball, controller: 'games', type: 'FuzzBall', only: [:index]
-
   resources :ref_sessions, only: [:new, :create, :destroy]
-
+  resources :tournaments, only:[:show]
   resources :users, only: [:index, :show] do
     member do
       post 'update_first_team_score'
