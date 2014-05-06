@@ -5,7 +5,10 @@ class TournamentsController < ApplicationController
 			@type = "PingPong"
 		else 
 			@type = "FuzzBall"
-		end
+		end 
+
+		@first_round_games = Game.at_depth(3)
+		binding.pry
 	end
 
 end

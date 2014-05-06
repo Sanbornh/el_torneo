@@ -1,0 +1,17 @@
+$(document).ready(function(){
+
+	wrapperWidth = $('.wrapper').width();
+	console.log(wrapperWidth);
+
+	var numGamesRoundOne = <% @first_round_games.count %>;
+	console.log(numGamesRoundOne)
+
+
+	$(window).on('resize', function() {
+		var wrapperWidth = $('.wrapper').width();
+		console.log(wrapperWidth);
+	});
+
+
+
+})
