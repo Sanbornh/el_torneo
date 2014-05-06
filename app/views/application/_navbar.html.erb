@@ -5,14 +5,20 @@
         <%= link_to((ref_session_path("current")), method: :delete) do %>
           <li class="nav_btn" style = "width: 250px"><h2><%= "LOGOUT " + current_user.username.upcase %></h2></li>
         <% end %>
+
+        <%= link_to(users_path) do %>
+          <li class="nav_btn"><h2>ALL GAMES</h2></li>
+        <% end %>
+
       <% else %>
         <%= link_to(new_ref_session_path) do %>
           <li class="nav_btn"><h2>REFEREE LOG IN</h2></li>
         <% end %>
-      <% end %>
 
-      <%= link_to(new_team_path) do %>
-        <li class="nav_btn"><h2>TEAM SIGN UP</h2></li>
+        <%= link_to(new_team_path) do %>
+          <li class="nav_btn"><h2>TEAM SIGN UP</h2></li>
+        <% end %>
+
       <% end %>
 
       <%= link_to(root_path) do %>

@@ -4,7 +4,7 @@
     <!-- change to game.winner == nil once we have games populated without winners, which is when the tournament is created-->
     <% @games.each do |game| %>
       <% if current_user.username == "pingpong referee" && game.type == "PingPong" && game.winner != nil %>
-        <p><%= link_to ("Game id: " + TeamGame.find(game.id).to_s), user_path(game.id) %></p>
+        <p><%= link_to ("Game id: " + (game.id).to_s), user_path(game.id) %></p>
       <% elsif current_user.username == "fuzzball referee" && game.type == "FuzzBall" && game.winner != nil %>
         <p><%= link_to ("Game id: " + (game.id).to_s), user_path(game.id) %></p>
       <% end %>
