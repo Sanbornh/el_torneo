@@ -1,15 +1,11 @@
 class UsersController < ApplicationController
 
   def index
-    #this is to show every game that has been created
-    #clicking on a game takes you to the 'show' page for that game
-    #the referee should be able to see the games by 'type'
-    #need two referees, each responsible for one 'type' of games - fuzzball or pingpong
     @games = Game.all
   end
 
   def show
-    #the referee can update the score on this page
+    @game = Game.find(params[:id])
   end
 
   def new
@@ -21,6 +17,20 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
     end
+  end
+
+  def update_first_team_score
+    @game = Game.find(params[:id])
+    @team_games = TeamsGame.where(game_id: @game.id)
+    new_score = @team_games[0].update_attribute(:score, @team_games[0].score + 1)
+    redirect_to user_path
+  end
+
+  def update_second_team_score
+    @game = Game.find(params[:id])
+    @team_games = TeamsGame.where(game_id: @game.id)
+    @team_games[1].update_attribute(:score, @team_games[1].score + 1)
+    redirect_to user_path
   end
 
   private

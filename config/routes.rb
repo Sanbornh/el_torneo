@@ -1,6 +1,6 @@
 ElTorneo::Application.routes.draw do
 
-  root 'teams#index'
+  root 'application#index'
 
   resources :teams, only: [:index, :show, :new, :create]
 
@@ -9,7 +9,12 @@ ElTorneo::Application.routes.draw do
 
   resources :ref_sessions, only: [:new, :create, :destroy]
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show] do
+    member do
+      post 'update_first_team_score'
+      post 'update_second_team_score'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
