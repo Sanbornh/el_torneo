@@ -9,4 +9,14 @@ class Game < ActiveRecord::Base
 
   delegate :pingpong, :fuzzball, to: :games
 
+  def set_team(team)
+  	teams_game = TeamsGame.where(game_id: self) 
+  	if teams_game.count == 2
+			puts "Someone tried to assign a third team to a game"
+		elsif teams_game.empty? then
+			TeamsGame.create!(game_id: self.id, team_id: team.id)
+		else
+			teams_game(game_id: self.id, team_id: team.id).save
+		end
+  end
 end
