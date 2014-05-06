@@ -1,13 +1,11 @@
 class UsersController < ApplicationController
 
   def index
-    #this is to show every unplayed game
-    #two referees see two separate types of games
     @games = Game.all
   end
 
   def show
-    #the referee can update the score on this page
+    @game = Game.find(params[:id])
   end
 
   def new

@@ -1,6 +1,14 @@
 <div class = "ref-games-page">
-  <h1>this page will show all games associated with one of the two usernames</h1>
 
+  <div class = "games-type">
+    <% if current_user.username == "pingpong referee" %>
+      <h1>List of unplayed Ping Pong Games</h1>
+    <% elsif current_user.username == "fuzzball referee" %>
+      <h1>List of unplayed FuzzBall Games</h1>
+    <% end %>
+  </div>
+
+  <div class = "games-list">
     <!-- change to game.winner == nil once we have games populated without winners, which is when the tournament is created-->
     <% @games.each do |game| %>
       <% if current_user.username == "pingpong referee" && game.type == "PingPong" && game.winner != nil %>
@@ -9,5 +17,6 @@
         <p><%= link_to game.current_game_teams, user_path(game.id) %></p>
       <% end %>
     <% end %>
+  </div>
 
 </div>
