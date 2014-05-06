@@ -50,14 +50,9 @@ class Tournament
 	def seed_first_round
 		games_in_round = Game.roots.to_a
 		until @teams.empty? do
-			binding.pry
 			games_in_round.each do |game|
-				TeamsGame.create!(game_id: game.id, team_id: random_team!)
-				
+				game.set_team(random_team!)
 			end
-
-			binding.pry
-
 		end
 
 
