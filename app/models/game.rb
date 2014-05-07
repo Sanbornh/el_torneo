@@ -73,17 +73,17 @@ class Game < ActiveRecord::Base
   end
 
   def winner 
-    if @game.type == "PingPong"
+    if self.type == "PingPong"
       if (team_1_score >= (team_2_score + 2)) && (team_1_score >= 21)
-        @game.winner = team_1.id
+        self.winner = team_1.id
       elsif (team_2_score >= (team_1_score + 2)) && (team_2_score >= 21)
-        @game.winner = team_2.id
+        self.winner = team_2.id
       end
-    elsif @game.type == "FuzzBall"
+    elsif self.type == "FuzzBall"
       if team_1_score > team_2_score && team_1_score == 8
-        @game.winner = team_1.id
+        self.winner = team_1.id
       elsif team_2_score > team_1_score && team_2_score == 8
-        @game.winner = team_2.id
+        self.winner = team_2.id
       end
     end
   end

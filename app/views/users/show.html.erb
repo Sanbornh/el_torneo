@@ -2,7 +2,7 @@
   <%= link_to "Back to All Games", users_path %>
 
   <% if @game.winner != nil %>
-    <h1><%= @game.winner.team_name %> has won the game!</h1>
+    <h1><%= Team.find(@game.winner).team_name %> has won the game!</h1>
   <% end %>
 
   <div class = "ref-scorekeeping-page-scoreboard">
