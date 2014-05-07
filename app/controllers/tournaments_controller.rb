@@ -8,7 +8,6 @@ class TournamentsController < ApplicationController
 		end 
 
 		@first_round_games = Game.at_depth(3)
-		binding.pry
 	end
 
 end
