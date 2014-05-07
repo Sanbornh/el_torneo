@@ -1,5 +1,28 @@
 <div class = "main-page">
   
-  <h1>Main Page</h1>
+  <% @teams.each do |team| %>
+
+    <div class="title_wrapper">
+      <div class="profile title">
+        <%= team[:team_name] %>
+      </div>
+    </div>
+
+    <ul>
+      <li class="profile_photo">
+        <div class = "player-show">
+          <%= team[:player1_name] %>
+          <%= image_tag team.avatar1.url(:medium) %>
+        </div>
+      </li>
+
+      <li class="profile_photo">
+        <div class = "player-show">
+          <%= team[:player2_name] %>
+          <%= image_tag team.avatar2.url(:medium) %>
+        </div>
+      </li>
+    </ul>
+  <% end %>
 
 </div>

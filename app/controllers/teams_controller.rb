@@ -1,9 +1,8 @@
 class TeamsController < ApplicationController
 
-  # def index
-  #   #wont need because we dont have a page showing all teams
-  #   #could be used to show all teams in the tree
-  # end
+  def index
+    @teams = Team.all
+  end
 
   def show
     @team = Team.find(params[:id])
