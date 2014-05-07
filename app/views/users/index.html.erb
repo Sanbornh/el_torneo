@@ -9,11 +9,10 @@
   </div>
 
   <div class = "ref-games-list">
-    <!-- change to game.winner == nil once we have games populated without winners, which is when the tournament is created-->
     <% @games.each do |game| %>
-      <% if current_user.username == "pingpong referee" && game.type == "PingPong" && game.winner != nil %>
+      <% if current_user.username == "pingpong referee" && game.type == "PingPong" %>
         <p><%= link_to game.current_game_teams, user_path(game.id) %></p>
-      <% elsif current_user.username == "fuzzball referee" && game.type == "FuzzBall" && game.winner != nil %>
+      <% elsif current_user.username == "fuzzball referee" && game.type == "FuzzBall" %>
         <p><%= link_to game.current_game_teams, user_path(game.id) %></p>
       <% end %>
     <% end %>
