@@ -10,9 +10,9 @@
 
   <div class = "ref-games-list">
     <% @games.each do |game| %>
-      <% if current_user.username == "pingpong referee" && game.type == "PingPong" %>
+      <% if current_user.username == "pingpong referee" && game.type == "PingPong" && game.winner == nil %>
         <p><%= link_to game.current_game_teams, user_path(game.id) %></p>
-      <% elsif current_user.username == "fuzzball referee" && game.type == "FuzzBall" %>
+      <% elsif current_user.username == "fuzzball referee" && game.type == "FuzzBall" && game.winner == nil %>
         <p><%= link_to game.current_game_teams, user_path(game.id) %></p>
       <% end %>
     <% end %>
