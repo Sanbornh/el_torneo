@@ -7,24 +7,24 @@
 
   <div class = "team-scorekeeping">
     <br>
-    <h1><%= Team.find(TeamsGame.where(game_id: @game.id)[0].team_id).team_name %></h1>
-    <p><%= Team.find(TeamsGame.where(game_id: @game.id)[0].team_id).player1_name %></p>
-    <p><%= Team.find(TeamsGame.where(game_id: @game.id)[0].team_id).player2_name %></p>
+    <h1><%= @game.team_1.team_name %></h1>
+    <p><%= @game.team_1.player1_name %></p>
+    <p><%= @game.team_1.player2_name %></p>
     <br>
     <div class = "add-score">
-      <h1><%= link_to "Point for #{Team.find(TeamsGame.where(game_id: @game.id)[0].team_id).team_name}", update_first_team_score_user_path(@game), method: :post %></h1>
+      <h1><%= link_to "Point for #{@game.team_1.team_name}", update_first_team_score_user_path(@game), method: :post %></h1>
     </div>
   </div>
   <br>
 
   <div class = "team-scorekeeping">
     <br>
-    <h1><%= Team.find(TeamsGame.where(game_id: @game.id)[1].team_id).team_name %></h1>
-    <p><%= Team.find(TeamsGame.where(game_id: @game.id)[1].team_id).player1_name %></p>
-    <p><%= Team.find(TeamsGame.where(game_id: @game.id)[1].team_id).player2_name %></p>
+    <h1><%= @game.team_2.team_name %></h1>
+    <p><%= @game.team_2.player1_name %></p>
+    <p><%= @game.team_2.player2_name %></p>
     <br>
     <div class = "add-score">
-      <h1><%= link_to "Point for #{Team.find(TeamsGame.where(game_id: @game.id)[1].team_id).team_name}", update_second_team_score_user_path(@game), method: :post %></h1>
+      <h1><%= link_to "Point for #{@game.team_2.team_name}", update_second_team_score_user_path(@game), method: :post %></h1>
     </div>
   </div>
 
