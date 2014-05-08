@@ -1,5 +1,11 @@
 class DropPlayers < ActiveRecord::Migration
-  def change
-    drop_table :players
+  def up
+    if table_exists?(:players)
+      drop_table :players
+    end
+  end
+
+  def down
+
   end
 end
