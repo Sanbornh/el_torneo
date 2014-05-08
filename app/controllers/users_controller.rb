@@ -24,8 +24,10 @@ class UsersController < ApplicationController
     new_score = @game.update_attribute(:team_1_score, @game.team_1_score + 1)
 
     respond_to do |format|
-      format.html { redirect_to user_path }
-      format.js
+      if new_score
+        format.html { redirect_to user_path }
+        format.json { render json: @game.team_score }
+      end
     end
   end
 
@@ -34,8 +36,10 @@ class UsersController < ApplicationController
     new_score = @game.update_attribute(:team_2_score, @game.team_2_score + 1)
 
     respond_to do |format|
-      format.html { redirect_to user_path }
-      format.js
+      if new_score
+        format.html { redirect_to user_path }
+        format.json { render json: @game.team_score }
+      end
     end
   end
 

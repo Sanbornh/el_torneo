@@ -17,18 +17,16 @@
 
 
 $(document).ready(function() {
-  $('#add-score').click(function(event){
-
-    // stops the link from making a post request and reloading the page
-    // without preventDefault, it will do both an AJAX request and a POST request
-    // with preventDefault, we stop the POST request
+  $('#add-score-first-team').click(function(event){
     event.preventDefault();
-
-    var url = $('.add-score').children().attr('href');
-    if (url)
-    {
-      $.getScript(url);
-    }
+    var url = $(this).data("foo");
+    $.ajax({
+      url: url,
+      type: 'POST',
+      dataType: 'json',
+    }).done(function(data) {
+      alert(data);
+      $('.ref-scorekeeping-page-scoreboard h1 span').text(data);
+    });
   });
-
 });
