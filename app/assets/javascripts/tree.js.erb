@@ -1,0 +1,115 @@
+var data = [{'id':382,'winner':null,'created_at':'2014-05-08T15:57:58.935Z','updated_at':'2014-05-08T15:57:58.935Z','ancestry':null,'ancestry_depth':0,'team_1_id':null,'team_2_id':null,'team_1_score':0,'team_2_score':0,'children':[{'id':381,'winner':null,'created_at':'2014-05-08T15:57:58.923Z','updated_at':'2014-05-08T15:57:58.965Z','ancestry':'382','ancestry_depth':1,'team_1_id':null,'team_2_id':null,'team_1_score':0,'team_2_score':0,'children':[{'id':378,'winner':null,'created_at':'2014-05-08T15:57:58.875Z','updated_at':'2014-05-08T15:57:58.961Z','ancestry':'382/381','ancestry_depth':2,'team_1_id':null,'team_2_id':null,'team_1_score':0,'team_2_score':0,'children':[{'id':372,'winner':null,'created_at':'2014-05-08T15:57:58.811Z','updated_at':'2014-05-08T15:57:58.959Z','ancestry':'382/381/378','ancestry_depth':3,'team_1_id':12,'team_2_id':9,'team_1_score':0,'team_2_score':0,'children':[]},{'id':373,'winner':null,'created_at':'2014-05-08T15:57:58.813Z','updated_at':'2014-05-08T15:57:58.960Z','ancestry':'382/381/378','ancestry_depth':3,'team_1_id':34,'team_2_id':10,'team_1_score':0,'team_2_score':0,'children':[]}]},{'id':379,'winner':null,'created_at':'2014-05-08T15:57:58.881Z','updated_at':'2014-05-08T15:57:58.964Z','ancestry':'382/381','ancestry_depth':2,'team_1_id':null,'team_2_id':null,'team_1_score':0,'team_2_score':0,'children':[{'id':374,'winner':null,'created_at':'2014-05-08T15:57:58.815Z','updated_at':'2014-05-08T15:57:58.963Z','ancestry':'382/381/379','ancestry_depth':3,'team_1_id':35,'team_2_id':33,'team_1_score':0,'team_2_score':0,'children':[]},{'id':375,'winner':null,'created_at':'2014-05-08T15:57:58.816Z','updated_at':'2014-05-08T15:57:58.964Z','ancestry':'382/381/379','ancestry_depth':3,'team_1_id':16,'team_2_id':null,'team_1_score':0,'team_2_score':0,'children':[]}]}]},{'id':380,'winner':null,'created_at':'2014-05-08T15:57:58.911Z','updated_at':'2014-05-08T15:57:58.944Z','ancestry':'382','ancestry_depth':1,'team_1_id':null,'team_2_id':null,'team_1_score':0,'team_2_score':0,'children':[{'id':377,'winner':null,'created_at':'2014-05-08T15:57:58.869Z','updated_at':'2014-05-08T15:57:58.943Z','ancestry':'382/380','ancestry_depth':2,'team_1_id':null,'team_2_id':null,'team_1_score':0,'team_2_score':0,'children':[{'id':370,'winner':null,'created_at':'2014-05-08T15:57:58.808Z','updated_at':'2014-05-08T15:57:58.941Z','ancestry':'382/380/377','ancestry_depth':3,'team_1_id':31,'team_2_id':13,'team_1_score':0,'team_2_score':0,'children':[]},{'id':371,'winner':null,'created_at':'2014-05-08T15:57:58.810Z','updated_at':'2014-05-08T15:57:58.942Z','ancestry':'382/380/377','ancestry_depth':3,'team_1_id':15,'team_2_id':32,'team_1_score':0,'team_2_score':0,'children':[]}]},{'id':376,'winner':null,'created_at':'2014-05-08T15:57:58.861Z','updated_at':'2014-05-08T15:57:58.940Z','ancestry':'382/380','ancestry_depth':2,'team_1_id':null,'team_2_id':null,'team_1_score':0,'team_2_score':0,'children':[{'id':369,'winner':null,'created_at':'2014-05-08T15:57:58.806Z','updated_at':'2014-05-08T15:57:58.939Z','ancestry':'382/380/376','ancestry_depth':3,'team_1_id':11,'team_2_id':29,'team_1_score':0,'team_2_score':0,'children':[]},{'id':368,'winner':null,'created_at':'2014-05-08T15:57:58.800Z','updated_at':'2014-05-08T15:57:58.938Z','ancestry':'382/380/376','ancestry_depth':3,'team_1_id':14,'team_2_id':30,'team_1_score':0,'team_2_score':0,'children':[]}]}]}]}]
+
+
+
+
+// *********** Convert flat data into a nice tree ***************
+// create an id: node map
+
+var dataMap = data.reduce(function(map, node) {
+  map[node.id] = node;
+  return map;
+}, {});
+
+// create the tree array
+var treeData = [];
+data.forEach(function(node) {
+  // add to parent
+  var ancestry_depth = dataMap[node.ancestry_depth];
+  if (ancestry_depth) {
+    // create child array if it doesn't exist
+    (ancestry_depth.children || (ancestry_depth.children = []))
+      // add node to child array
+      .push(node);
+  } else {
+    // parent is null or missing
+    treeData.push(node);
+  }
+});
+
+// ************** Generate the tree diagram  *****************
+var margin = {
+  top: 20, 
+  right: 20, 
+  bottom: 20, 
+  left: 20,
+},
+  width = 2000 - margin.right - margin.left,
+  height = 1000 - margin.top - margin.bottom;
+  
+var i = 0;
+
+var tree = d3.layout.tree()
+  // .separation(function(a, b) { return ((a.parent == root) && (b.parent == root)) ? 20 : 4; })
+  // .size([height, width - 160]);
+  .size([height, width]);
+
+var diagonal = d3.svg.diagonal()
+  .projection(function(d) { 
+    return [d.x, d.y]; 
+  });
+
+var svg = d3.select('.wrapper').append("svg")
+  .attr("width", width + margin.right + margin.left)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+root = treeData[0];
+  
+update(root);
+
+function update(source) {
+
+  // Compute the new tree layout.
+  var nodes = tree.nodes(root).reverse(),
+    links = tree.links(nodes);
+
+  // Normalize for fixed-depth.
+  nodes.forEach(function(d) { 
+    d.y = d.depth * 180; 
+  });
+
+  // Declare the nodes…
+  var node = svg.selectAll("g.node")
+    .data(nodes, function(d) { 
+      return d.id || (d.id = ++i); 
+    });
+
+  // Enter the nodes.
+  var nodeEnter = node.enter().append("g")
+    .attr("class", "node")
+    .attr("transform", function(d) { 
+      return "translate(" + d.x + "," + d.y + ")";  
+    });
+
+  nodeEnter.append("circle")
+    .attr("r", 15);
+    // .style("fill", "#fff");
+
+  nodeEnter.append("text")
+    .attr("x", function(d) { 
+      return d.children || d._children ? -13 : 13; 
+    })
+    .attr("dy", ".35em")
+    .attr("text-anchor", function(d) { 
+      return d.children || d._children ? "end" : "start"; 
+    })
+    .text(function(d) 
+      { 
+        return d.team_1_id + " vs. " + d.team_2_id; 
+      })
+    .style("fill-opacity", 1);
+
+  // Declare the links…
+  var link = svg.selectAll("path.link")
+    .data(links, function(d) { 
+      return d.target.id; 
+    });
+
+  // Enter the links.
+  link.enter().insert("path", "g")
+    .attr("class", "link")
+    .attr("d", diagonal);
+
+  }
