@@ -1,0 +1,2 @@
+module CostumePhotosHelper
+end

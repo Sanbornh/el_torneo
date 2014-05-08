@@ -12,6 +12,7 @@
  *= require_self
  *= require body
  *= require styles
+ *= require costume_photos
  */
 
 html

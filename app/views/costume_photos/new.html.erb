@@ -1,0 +1,16 @@
+<div class = "picture_form" style = "float:left">
+  <%= form_for @costume_photo, html: { multipart: true } do |f| %>
+
+    <div class = "field">
+      <%= f.text_field :title, placeholder: "Title" %>
+    </div>
+    
+    <div class = "add_image_field">
+      <%= f.file_field :photo  %>
+    </div>
+
+    <div class = "actions">
+      <%= f.submit "Add Photo" %>
+    </div>
+  <% end %>
+</div>

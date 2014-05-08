@@ -1,0 +1,13 @@
+<h1>Costumes | <span style = "font-size: 1rem"><%= link_to "Add a New Photo", new_costume_photo_path %></span></h1>
+
+
+<div id = "photo_container">
+  <% @costume_photos.reverse.each do |costume_photo| %>
+    <div class = "photo_box">
+      <%= image_tag(costume_photo.photo.url(:medium)) %>
+        <p style="font-size: 1.5em"><%= costume_photo[:title] %></p>
+        <br>
+        <p>+ <%= costume_photo.votes.count %> |  <%= link_to 'Upvote', upvote_costume_photo_path(costume_photo), method: :post %><p>
+    </div>
+  <% end %>
+</div>

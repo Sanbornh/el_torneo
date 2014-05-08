@@ -1,18 +1,18 @@
 <div class = "ref-games-page">
 
   <div class = "ref-games-type">
-    <% if current_user.username == "pingpong referee" %>
+    <% if current_user.username == "pingpong_ref" %>
       <h1>List of unplayed Ping Pong Games</h1>
-    <% elsif current_user.username == "fuzzball referee" %>
+    <% elsif current_user.username == "fuzzball_ref" %>
       <h1>List of unplayed FuzzBall Games</h1>
     <% end %>
   </div>
 
   <div class = "ref-games-list">
     <% @games.each do |game| %>
-      <% if current_user.username == "pingpong referee" && game.type == "PingPong" && game.winner == nil %>
+      <% if current_user.username == "pingpong_ref" && game.type == "PingPong" && game.winner == nil %>
         <p><%= link_to game.current_game_teams, user_path(game.id) %></p>
-      <% elsif current_user.username == "fuzzball referee" && game.type == "FuzzBall" && game.winner == nil %>
+      <% elsif current_user.username == "fuzzball_ref" && game.type == "FuzzBall" && game.winner == nil %>
         <p><%= link_to game.current_game_teams, user_path(game.id) %></p>
       <% end %>
     <% end %>
