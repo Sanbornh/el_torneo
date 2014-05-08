@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140506220914) do
+ActiveRecord::Schema.define(version: 20140508062653) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "costume_photos", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
 
   create_table "games", force: true do |t|
     t.integer  "winner"
@@ -50,6 +60,12 @@ ActiveRecord::Schema.define(version: 20140506220914) do
   create_table "users", force: true do |t|
     t.string   "username"
     t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "votes", force: true do |t|
+    t.string   "costume_photo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
