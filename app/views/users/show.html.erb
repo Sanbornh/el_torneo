@@ -13,7 +13,7 @@
       <p><%= @game.team_1.player2_name %></p>
       <br>
       <div class = "add-score">
-        <h1 id = "add-score-first-team" data-foo="<%= update_first_team_score_user_path(@game) %>"> <span><%= "Point for #{@game.team_1.team_name}" %></span></h1>
+        <h1 id = "add-score-first-team"><%= link_to "Point for #{@game.team_1.team_name}", update_first_team_score_user_path, method: :post %></h1>
       </div>
     </div>
     <br>
@@ -25,7 +25,7 @@
       <p><%= @game.team_2.player2_name %></p>
       <br>
       <div class = "add-score">
-        <h1 id = "add-score-second-team"> <span><%= "Point for #{@game.team_2.team_name}" %></span></h1>
+        <h1 id = "add-score-second-team"><%= link_to "Point for #{@game.team_2.team_name}", update_second_team_score_user_path, method: :post %></h1>
       </div>
     </div>
   <% elsif @game.winner != nil %>
