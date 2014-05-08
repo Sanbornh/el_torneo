@@ -16,17 +16,17 @@
 //= require_tree .
 
 
-$(document).ready(function() {
-  $('#add-score-first-team').click(function(event){
-    event.preventDefault();
-    var url = $(this).data("foo");
-    $.ajax({
-      url: url,
-      type: 'POST',
-      dataType: 'json',
-    }).done(function(data) {
-      alert(data);
-      $('.ref-scorekeeping-page-scoreboard h1 span').text(data);
-    });
-  });
-});
+// $(document).ready(function() {
+//   $('#add-score-first-team').click(function(event){
+//     event.preventDefault();
+//     var url = $(this).data("foo");
+//     $.ajax({
+//       url: url,
+//       type: 'POST',
+//       dataType: 'json',
+//     }).done(function(data) {
+//       alert(data);
+//       $('.ref-scorekeeping-page-scoreboard h1 span').text(data);
+//     });
+//   });
+// });
