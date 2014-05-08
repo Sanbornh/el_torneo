@@ -57,6 +57,38 @@ class Game < ActiveRecord::Base
     end
   end
 
+  def update_first_team_score
+    # @game = Game.find(params[:id])
+    new_score = self.update_attribute(:team_1_score, self.team_1_score + 1)
+
+    if self.winner 
+      next_game = self.parent
+      if next_game.team_1_id == nil
+        next_game.team_1_id = self.winner
+        binding.pry
+      else
+        next_game.team_2_id = self.winner
+      end
+      next_game.save
+    end
+
+    
+  end
+
+  def update_second_team_score
+    @game = Game.find(params[:id])
+    new_score = @game.update_attribute(:team_2_score, @game.team_2_score + 1)
+
+    if @game.winner 
+      next_game = @game.parent
+      if next_game.team_1_id == nil
+        next_game.team_1_id = @game.winner.id
+      else
+        next_game.team_2_id = @game.winnder.id
+      end
+    end
+  end
+
   def teams
     Team.where("id in (?)", [team_1_id, team_2_id])
   end
