@@ -1,35 +1,36 @@
 <div class = "ref-scorekeeping-page">
   <%= link_to "Back to All Games", users_path %>
 
-  <% if @game.winner != nil %>
-    <h1><%= Team.find(@game.winner).team_name %> has won the game!</h1>
-  <% end %>
-
   <div class = "ref-scorekeeping-page-scoreboard">
     <h1>Scoreboard: <%= @game.team_score %></h1>
   </div>
 
-  <div class = "team-scorekeeping">
-    <br>
-    <h1><%= @game.team_1.team_name %></h1>
-    <p><%= @game.team_1.player1_name %></p>
-    <p><%= @game.team_1.player2_name %></p>
-    <br>
-    <div class = "add-score">
-      <h1><%= link_to "Point for #{@game.team_1.team_name}", update_first_team_score_user_path(@game), method: :post %></h1>
+  <% if @game.winner == nil %>
+    <div class = "team-scorekeeping">
+      <br>
+      <h1><%= @game.team_1.team_name %></h1>
+      <p><%= @game.team_1.player1_name %></p>
+      <p><%= @game.team_1.player2_name %></p>
+      <br>
+      <div class = "add-score">
+        <h1><%= link_to "Point for #{@game.team_1.team_name}", update_first_team_score_user_path(@game), method: :post %></h1>
+      </div>
     </div>
-  </div>
-  <br>
+    <br>
 
-  <div class = "team-scorekeeping">
-    <br>
-    <h1><%= @game.team_2.team_name %></h1>
-    <p><%= @game.team_2.player1_name %></p>
-    <p><%= @game.team_2.player2_name %></p>
-    <br>
-    <div class = "add-score">
-      <h1><%= link_to "Point for #{@game.team_2.team_name}", update_second_team_score_user_path(@game), method: :post %></h1>
+    <div class = "team-scorekeeping">
+      <br>
+      <h1><%= @game.team_2.team_name %></h1>
+      <p><%= @game.team_2.player1_name %></p>
+      <p><%= @game.team_2.player2_name %></p>
+      <br>
+      <div class = "add-score">
+        <h1><%= link_to "Point for #{@game.team_2.team_name}", update_second_team_score_user_path(@game), method: :post %></h1>
+      </div>
     </div>
-  </div>
+  <% elsif @game.winner != nil %>
+    <h1><%= Team.find(@game.winner).team_name %> has won the game!</h1>
+  <% end %>
+
 
 </div>
