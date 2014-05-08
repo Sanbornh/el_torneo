@@ -1,6 +1,6 @@
 ElTorneo::Application.routes.draw do
 
-  root 'application#index'
+  root 'teams#index'
 
   resources :teams, only: [:index, :show, :new, :create]
   resources :ping_pong, controller: 'games', type: 'PingPong', only: [:index]
@@ -15,11 +15,11 @@ ElTorneo::Application.routes.draw do
     end
   end
 
-  resources :costume_photos, only: [:index, :show, :new, :create, :upvote] do
-    member do
-      post 'upvote'
-    end
-  end
+  # resources :costume_photos, only: [:index, :show, :new, :create, :upvote] do
+  #   member do
+  #     post 'upvote'
+  #   end
+  # end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

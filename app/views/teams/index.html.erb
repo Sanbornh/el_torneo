@@ -5,23 +5,23 @@
     <div class="title_wrapper">
       <div class="profile title">
         <%= team[:team_name] %>
+        <%= "(#{team[:id]})" %>
       </div>
     </div>
 
     <ul>
-      <li class="profile_photo">
-        <div class = "player-show">
-          <%= team[:player1_name] %>
-          <%= image_tag team.avatar1.url(:medium) %>
-        </div>
-      </li>
+      <div class = "player-show" style = "font-size: 2rem">
+        <%= team[:player1_name] %>
+        <br>
+        <%= team[:player2_name] %>
+        <%#= image_tag team.avatar1.url(:medium) %>
+      </div>
 
-      <li class="profile_photo">
-        <div class = "player-show">
-          <%= team[:player2_name] %>
-          <%= image_tag team.avatar2.url(:medium) %>
+      <!-- <li class="profile_photo">
+        <div class = "player-show" style = "font-size: 2rem">
+          <%#= image_tag team.avatar2.url(:medium) %>
         </div>
-      </li>
+      </li> -->
     </ul>
   <% end %>
 

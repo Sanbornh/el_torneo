@@ -89,13 +89,13 @@ class Tournament
 		games = Game.where('type = ?', @type)
 		games.each do |game|
 			if game.team_1 && !game.team_2
-				binding.pry
 				next_game = game.parent
-				# game.winner = game.team_1_id
-				next_game.team_1_id = game.team_1_id
+				if next_game.team_1_id 
+					next_game.team_2_id = game.team_1_id
+				else
+					next_game.team_1_id = game.team_1_id
+				end
 				next_game.save
-				# game.save
-					# binding.pry
 			end
 		end
 
