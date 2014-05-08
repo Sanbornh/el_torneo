@@ -32,6 +32,7 @@ class Game < ActiveRecord::Base
   end
 
   def current_game_teams
+
     first_team = team_1
     second_team = team_2
     "#{first_team.team_name} (#{first_team.player1_name} and #{first_team.player2_name}) vs. #{second_team.team_name} (#{second_team.player1_name} and #{second_team.player2_name})"
@@ -65,27 +66,25 @@ class Game < ActiveRecord::Base
       next_game = self.parent
       if next_game.team_1_id == nil
         next_game.team_1_id = self.winner
-        binding.pry
       else
         next_game.team_2_id = self.winner
       end
       next_game.save
     end
-
-    
   end
 
   def update_second_team_score
-    @game = Game.find(params[:id])
-    new_score = @game.update_attribute(:team_2_score, @game.team_2_score + 1)
+    # @game = Game.find(params[:id])
+    new_score = self.update_attribute(:team_2_score, self.team_2_score + 1)
 
-    if @game.winner 
-      next_game = @game.parent
+    if self.winner 
+      next_game = self.parent
       if next_game.team_1_id == nil
-        next_game.team_1_id = @game.winner.id
+        next_game.team_1_id = self.winner
       else
-        next_game.team_2_id = @game.winnder.id
+        next_game.team_2_id = self.winner
       end
+      next_game.save
     end
   end
 
