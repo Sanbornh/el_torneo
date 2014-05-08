@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    @games = Game.all
+    @games = Game.where('team_1_id IS NOT NULL AND team_2_id IS NOT NULL')
   end
 
   def show
@@ -19,15 +19,29 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_first_team_score
+    @game = Game.find(params[:id])
+    @game.update_first_team_score
+    redirect_to user_path
 
 
   # respond_to do |format|
-  #   if new_score
   #     format.html { redirect_to user_path }
   #     format.json { render json: @game.team_score }
   #   end
-  # end
-end
+  end
+
+  def update_second_team_score
+    @game = Game.find(params[:id])
+    @game.update_second_team_score
+    redirect_to user_path
+
+
+  # respond_to do |format|
+  #     format.html { redirect_to user_path }
+  #     format.json { render json: @game.team_score }
+  #   end
+  end
 
   private
 
