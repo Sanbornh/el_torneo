@@ -26,6 +26,7 @@ class Tournament
 		make_first_round
 		seed_first_round
 		make_other_rounds
+		assign_buys
 	end
 
 	# Note that this method gets a random team
@@ -84,4 +85,25 @@ class Tournament
 		end
 	end
 
+	def assign_buys
+		games = Game.where('type = ?', @type)
+		games.each do |game|
+			if game.team_1 && !game.team_2
+				binding.pry
+				next_game = game.parent
+				# game.winner = game.team_1_id
+				next_game.team_1_id = game.team_1_id
+				next_game.save
+				# game.save
+					# binding.pry
+			end
+		end
+
+	end
+
 end
+
+
+
+
+
