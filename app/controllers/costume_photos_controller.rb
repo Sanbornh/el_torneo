@@ -1,44 +1,44 @@
 class CostumePhotosController < ApplicationController
 
-before_action :find_photo, only: [:show, :edit, :update, :destroy, :upvote]
+before_action :find_photo, only: [:show, :upvote]
   
   def index
-    @photos = CostumePhoto.all
+    @costume_photos = CostumePhoto.all
   end
 
   def show
   end
 
   def new
-    @photos = CostumePhoto.new
+    @costume_photo = CostumePhoto.new
   end
 
   def create
-    @photo = CostumePhoto.new(photo_params)
+    @costume_photo = CostumePhoto.new(photo_params)
 
-    if @photo.save
-      redirect_to photos_url, notice: "Your photo was successfully uploaded"
+    if @costume_photo.save
+      redirect_to costume_photos_path, notice: "Your photo was successfully uploaded"
     else
       render :new
     end
   end
 
   def upvote
-    @vote = @photo.votes.build
+    @vote = @costume_photo.votes.build
 
     if @vote.save
-      redirect_to photos_path
+      redirect_to costume_photos_path
     end
   end
 
   private
 
-  def find_picture
-    @photo = CostumePhoto.find(params[:id].to_i)
+  def find_photo
+    @costume_photo = CostumePhoto.find(params[:id].to_i)
   end
 
   def photo_params
-    params.require(:photo).permit(:title, :photo)
+    params.require(:costume_photo).permit(:title, :photo)
   end
 
 end

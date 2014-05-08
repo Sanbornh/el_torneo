@@ -1,2 +1,2 @@
-module CostumePhototsHelper
+module CostumePhotosHelper
 end
