@@ -7,10 +7,17 @@ ElTorneo::Application.routes.draw do
   resources :fuzz_ball, controller: 'games', type: 'FuzzBall', only: [:index]
   resources :ref_sessions, only: [:new, :create, :destroy]
   resources :tournaments, only:[:show]
+  
   resources :users, only: [:index, :show] do
     member do
       post 'update_first_team_score'
       post 'update_second_team_score'
+    end
+  end
+
+  resources :costume_photos, only: [:index, :show, :new, :create, :upvote] do
+    member do
+      post 'upvote'
     end
   end
 

@@ -1,12 +1,12 @@
-$(document).ready(function(){
+// $(document).ready(function(){
 
-	wrapperWidth = $('.wrapper').width();
-	console.log(wrapperWidth);
+// 	wrapperWidth = $('.wrapper').width();
+// 	console.log(wrapperWidth);
 
 
-	$(window).on('resize', function() {
-		var wrapperWidth = $('.wrapper').width();
-		console.log(wrapperWidth);
-	});
+// 	$(window).on('resize', function() {
+// 		var wrapperWidth = $('.wrapper').width();
+// 		console.log(wrapperWidth);
+// 	});
 
-})
+// })

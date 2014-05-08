@@ -22,23 +22,21 @@ class UsersController < ApplicationController
   def update_first_team_score
     @game = Game.find(params[:id])
     new_score = @game.update_attribute(:team_1_score, @game.team_1_score + 1)
-    redirect_to user_path
 
-    # respond_to do |format|
-    #   format.html
-    #   format.js
-    # end
+    respond_to do |format|
+      format.html { redirect_to user_path }
+      format.js
+    end
   end
 
   def update_second_team_score
     @game = Game.find(params[:id])
     new_score = @game.update_attribute(:team_2_score, @game.team_2_score + 1)
-    redirect_to user_path
 
-    # respond_to do |format|
-    #   format.html
-    #   format.js
-    # end
+    respond_to do |format|
+      format.html { redirect_to user_path }
+      format.js
+    end
   end
 
   private

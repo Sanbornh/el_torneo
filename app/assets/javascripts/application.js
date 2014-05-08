@@ -14,3 +14,21 @@
 //= require jquery_ujs
 //= require bracket.js.erb
 //= require_tree .
+
+
+$(document).ready(function() {
+  $('#add-score').click(function(event){
+
+    // stops the link from making a post request and reloading the page
+    // without preventDefault, it will do both an AJAX request and a POST request
+    // with preventDefault, we stop the POST request
+    event.preventDefault();
+
+    var url = $('.add-score').children().attr('href');
+    if (url)
+    {
+      $.getScript(url);
+    }
+  });
+
+});
